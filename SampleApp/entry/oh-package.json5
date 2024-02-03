@@ -1,0 +1,17 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "entry",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "rnoh": "file:../libs/rnoh-4.1.0.300.har",
+    "rnoh-pager-view": "file:../libs/pager_view.har",
+    "rnoh-svg": "file:../libs/svg.har",
+    "rnoh-safe-area": "file:../libs/safe_area.har",
+    "rnoh-gesture-handler": "file:../libs/gesture_handler.har",
+  }
+  
+}
