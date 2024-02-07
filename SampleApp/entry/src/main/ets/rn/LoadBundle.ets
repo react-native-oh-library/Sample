@@ -6,6 +6,7 @@ import { MarqueeView } from '../customView/MarqueeView'
 import { SVG_VIEW_TYPE_NAME, SVGView } from "rnoh-svg"
 import { SAFE_AREA_VIEW_TYPE, SafeAreaView, SAFE_AREA_PROVIDER_TYPE, SafeAreaProvider } from "rnoh-safe-area"
 import { RNGestureHandlerRootView, RNGestureHandlerButton } from "rnoh-gesture-handler"
+import { MaskedView, MASKED_VIEW_TYPE } from "rnoh-masked-view"
 
 @Builder export function buildCustomComponent(ctx: ComponentBuilderContext) {
   if (ctx.componentName === PAGER_VIEW_TYPE) {
@@ -49,6 +50,13 @@ import { RNGestureHandlerRootView, RNGestureHandlerButton } from "rnoh-gesture-h
      })
    } else if (ctx.componentName == RNGestureHandlerButton.DESCRIPTOR_TYPE){
      RNGestureHandlerButton({
+       ctx: ctx.rnComponentContext,
+       tag: ctx.tag,
+       buildCustomComponent: buildCustomComponent
+     })
+   }
+     else if (ctx.componentName === MASKED_VIEW_TYPE) {
+     MaskedView({
        ctx: ctx.rnComponentContext,
        tag: ctx.tag,
        buildCustomComponent: buildCustomComponent

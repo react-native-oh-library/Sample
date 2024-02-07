@@ -28,13 +28,13 @@ export default struct HomePage {
       if (this.isMetroAvailable) {
         MetroBaseRN({
           moduleName: this.moduleName,
-        }).align(Alignment.Top).margin({ top: 40 })
+        }).align(Alignment.Top)
       } else if (this.instance) {
         BaseRN({
           rnInstance: this.instance,
           moduleName: this.moduleName,
-          bundlePath: this.bundlePath,
-        }).align(Alignment.Top).margin({ top: 40 })
+          bundlePath: this.bundlePath ,
+        }).align(Alignment.Top)
       }
     }
     .hideTitleBar(true)
