@@ -1,7 +1,7 @@
 import {AppRegistry, Text, View, StyleSheet} from 'react-native';
 import AppGoods from './src/bundles/Goods/GoodsMainPage';
 import AppHome from './src/bundles/HomePage/HomePage';
-import ScreenDemo from './src/bundles/HomePage/ScreenDemo';
+import NavigationDemo from './src/bundles/HomePage/NavigationDemo';
 
 
 import React from 'react';
@@ -28,7 +28,7 @@ AppRegistry.setWrapperComponentProvider(appParams => {
     }
 });
 
-AppRegistry.registerComponent('HomePage', () => ScreenDemo);
+AppRegistry.registerComponent('HomePage', () => NavigationDemo);
 AppRegistry.registerComponent('Goods', () => AppGoods);
 AppRegistry.registerComponent('Details', () => AppDetails);
 AppRegistry.registerComponent('AppTest', () => AppTest);
