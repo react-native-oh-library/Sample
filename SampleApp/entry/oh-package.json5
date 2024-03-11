@@ -12,7 +12,8 @@
     "rnoh-svg": "file:../libs/svg.har",
     "rnoh-safe-area": "file:../libs/safe_area.har",
     "rnoh-gesture-handler": "file:../libs/gesture_handler.har",
-    "rnoh-masked-view": "file:../libs/masked_view.har"
+    "rnoh-masked-view": "file:../libs/masked_view.har",
+    "rnoh-pdf-view": "file:../libs/pdfview.har"
   }
   
 }
