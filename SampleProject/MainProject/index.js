@@ -30,7 +30,7 @@ AppRegistry.setWrapperComponentProvider(appParams => {
     }
 });
 
-AppRegistry.registerComponent('HomePage', () => PdfDemo);
+AppRegistry.registerComponent('HomePage', () => NavigationDemo);
 AppRegistry.registerComponent('Goods', () => AppGoods);
 AppRegistry.registerComponent('Details', () => AppDetails);
 AppRegistry.registerComponent('AppTest', () => AppTest);
