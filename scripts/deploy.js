@@ -215,7 +215,7 @@ async function createMergeRequest(sourceBranch, title) {
         body: JSON.stringify({
           title: title,
           head: `${GITHUB_OWNER}:${sourceBranch}`, // 确保这里的 GITHUB_OWNER 是实际的用户名
-          base: 'sig', // 假设 'main' 是目标分支
+          base: 'main', // 假设 'main' 是目标分支
           body: 'pr 描述测试',
         }),
       }
