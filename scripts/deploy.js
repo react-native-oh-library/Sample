@@ -221,7 +221,8 @@ async function createMergeRequest(sourceBranch, title) {
       }
     );
     if (!response.ok) {
-      throw new Error(`Failed to create pull request: ${response.statusText} ${response.status}`);
+      const errorMessage = await response.text();
+      throw new Error(`Failed to create pull request: ${response.statusText} ${response.status} - ${errorMessage}`);
     }
     const responseData = await response.json();
     return responseData.number; // 获取pr对应id号
