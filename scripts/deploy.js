@@ -24,7 +24,7 @@ const EXPECTED_EXECUTION_DIRECTORY_NAME =
 const GITHUB_URL = 'https://github.com/HDJKER/react-native-permissions'
 // const GITHUB_PROJECT_ID = 522;  // 内部统一ID标识?
 // 库名
-const MODULE_NAME = 'permissions';
+const MODULE_NAME = 'Sample';
 // har包的导出地址
 const HAR_FILE_OUTPUT_PATH = `tester/harmony/${MODULE_NAME}/build/default/outputs/default/${MODULE_NAME}.har`;
 // 发npm的包名
