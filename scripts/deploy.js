@@ -88,9 +88,9 @@ function runDeployment() {
                 rl.close();
               }else{
                 // add 存入缓存区
-                execSync(
-                  `git checkout -b ${GITHUB_OWNER}-${version}`
-                );
+                // execSync(
+                //   `git checkout -b ${GITHUB_OWNER}-${version}`
+                // );
                 execSync('git add -A');
                 // 输入commit信息
             rl.question(
@@ -205,19 +205,22 @@ function isRepositoryClean() {
 async function createMergeRequest(sourceBranch, title) {
   try{
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_REPOS}/${MODULE_NAME}/pulls`,
+      `https://api.github.com/repos/${GITHUB_OWNER}/${MODULE_NAME}/pulls`,
       {
         method:'POST',
         headers:{
-          'Authorization':GITHUB_TOKEN,
+          'Authorization':`token ${GITHUB_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title: title,
-          source_branch: sourceBranch,
-          target_branch: 'sig',
-          squash:true,
-          remove_source_branch:false,
+          head: 'HDJKER:Sample#sig',
+          // source_branch: sourceBranch,
+          // target_branch: 'sig',
+          base: 'sig',
+          // squash:true,
+          // remove_source_branch:true,
+          body:'pr 描述测试',
         }),
       }
     )
