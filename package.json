@@ -1,0 +1,83 @@
+{
+  "name": "@react-native-oh-tpl/react-native-permissions",
+  "version": "4.1.2-0.1.5",
+  "license": "MIT",
+  "description": "An unified permissions API for React Native on HarmonyOS",
+  "author": "Mathieu Acthernoene <zoontek@gmail.com>",
+  "homepage": "https://github.com/zoontek/react-native-permissions#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-native-oh-library/react-native-permissions"
+  },
+  "keywords": [
+    "react-native",
+    "react native",
+    "react-native-harmony",
+    "permission",
+    "authorization"
+  ],
+  "types": "dist/typescript/index.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "react-native": "src/index.ts",
+  "files": [
+    "/dist",
+    "/scripts",
+    "/src",
+    "app.plugin.js",
+    "mock.js",
+    "react-native.config.js",
+    "/harmony"
+  ],
+  "harmony": {
+    "alias": "react-native-permissions"
+  },
+  "scripts": {
+    "format": "prettier '**/*' -u -w",
+    "lint": "eslint './**/*.{js,ts,tsx}'",
+    "typecheck": "tsc --noEmit",
+    "build": "bob build",
+    "prepack": "yarn build",
+    "update_version": "node ./scripts/update-version.js",
+    "deploy": "node ./scripts/deploy.js"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "dist",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "peerDependencies": {
+    "react": ">=18.1.0",
+    "react-native": ">=0.70.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-windows": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@expo/config-plugins": "^7.8.4",
+    "@types/react": "^18.2.47",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "json5": "^2.2.3",
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "react": "18.2.0",
+    "react-native": "0.73.2",
+    "react-native-builder-bob": "^0.23.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "react-native-permissions": "4.1.2"
+  }
+}
