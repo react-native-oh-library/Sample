@@ -203,34 +203,30 @@ function isRepositoryClean() {
  * @returns {Promise<number>}
  */
 async function createMergeRequest(sourceBranch, title) {
-  try{
+  try {
     const response = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${MODULE_NAME}/pulls`,
       {
-        method:'POST',
-        headers:{
-          'Authorization':`token ${GITHUB_TOKEN}`,
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title: title,
-          head: 'HDJKER:Sample#sig',
-          // source_branch: sourceBranch,
-          // target_branch: 'sig',
-          base: 'sig',
-          // squash:true,
-          // remove_source_branch:true,
-          body:'pr 描述测试',
+          head: `${GITHUB_OWNER}:${sourceBranch}`, // 确保这里的 GITHUB_OWNER 是实际的用户名
+          base: 'main', // 假设 'main' 是目标分支
+          body: 'pr 描述测试',
         }),
       }
-    )
-    if (!response.ok){
+    );
+    if (!response.ok) {
       throw new Error(`Failed to create pull request: ${response.statusText} ${response.status}`);
     }
     const responseData = await response.json();
     return responseData.number; // 获取pr对应id号
-  }catch (error){
-    console.error('Error happens when create pull request:',error);
+  } catch (error) {
+    console.error('Error happens when create pull request:', error);
     throw error;
   }
 }
