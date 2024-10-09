@@ -205,11 +205,11 @@ function isRepositoryClean() {
 async function createMergeRequest(sourceBranch, title) {
   try{
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_REPOS}/${MODULE_NAME}/pulls`,
+      `https://api.github.com/repos/${GITHUB_OWNER}/${MODULE_NAME}/pulls`,
       {
         method:'POST',
         headers:{
-          'Authorization':GITHUB_TOKEN,
+          'Authorization':`token ${GITHUB_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -217,7 +217,7 @@ async function createMergeRequest(sourceBranch, title) {
           source_branch: sourceBranch,
           target_branch: 'sig',
           squash:true,
-          remove_source_branch:false,
+          remove_source_branch:true,
         }),
       }
     )
