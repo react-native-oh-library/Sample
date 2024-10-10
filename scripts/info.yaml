@@ -1,0 +1,7 @@
+commit:
+  title:test: commit test
+  body:this is a commit
+
+pr:
+  title:test: pr script
+  body:this is a pr

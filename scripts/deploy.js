@@ -3,6 +3,7 @@ const { execSync } = require('child_process');
 const { METHODS } = require('http');
 const fs = require('node:fs');
 const readline = require('readline');
+const { brotliDecompress } = require('zlib');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? '';
 // const GITHUB_TOKEN = ''
@@ -31,16 +32,16 @@ const HAR_FILE_OUTPUT_PATH = `tester/harmony/${MODULE_NAME}/build/default/output
 // const UNSCOPED_NPM_PACKAGE_NAME = '@react-native-oh-tpl/react-native-permissions';
 
 const GITHUB_REPOS = 'react-native-oh-library';
-
 const GITHUB_OWNER = 'HDJKER';
+const NEW_BRANCH = 'temp';
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
 function runDeployment() {
-    // 获取执行npm命令时所处文件路径 process.cwd()
-    // 判断是否是为指定的 EXPECTED_EXECUTION_DIRECTORY_NAME 路径
+  // 获取执行npm命令时所处文件路径 process.cwd()
+  // 判断是否是为指定的 EXPECTED_EXECUTION_DIRECTORY_NAME 路径
   if (!process.cwd().endsWith(EXPECTED_EXECUTION_DIRECTORY_NAME)) {
     console.log(
       `This script should be executed from ${EXPECTED_EXECUTION_DIRECTORY_NAME} directory`
@@ -55,6 +56,7 @@ function runDeployment() {
     process.exit(1);
   }
 
+  // 进行版本更新操作
   let version = '';
   // 从package.json文件中的version字段获取当前版本号
   const currentVersion = JSON.parse(
@@ -91,19 +93,21 @@ function runDeployment() {
                 // execSync(
                 //   `git checkout -b ${GITHUB_OWNER}-${version}`
                 // );
+                execSync(
+                  `git checkout -b ${NEW_BRANCH}`
+                );
                 execSync('git add -A');
                 // 输入commit信息
-            rl.question(
-              `\nfeat:新功能\nfix:修复BUG\ndocs:文档变更\nstyle:代码格式(不涉及代码运行的变动)\nrefactor:重构、可读性优化(既不是新增功能,也不是修复bug的代码变动)\n
+                rl.question(
+                `\nfeat:新功能\nfix:修复BUG\ndocs:文档变更\nstyle:代码格式(不涉及代码运行的变动)\nrefactor:重构、可读性优化(既不是新增功能,也不是修复bug的代码变动)\n
 perf:优化相关,提升性能、体验\ntest:测试相关,如添加测试用例\nbuild:构建过程或辅助工具的变动\nchore:不涉及代码变动的杂项\nci:修改集成配置的文件或脚本\nrelease:版本发布\n输入此次commit的类型,及对应内容:\n`, 
-            (typeCont) => {
-                // 输入commit信息后进行提交并创建pr
-                CreatePr(typeCont, version);
+                (typeCont) => {
+                    // 输入commit信息后进行提交并创建pr
+                    CreatePr(typeCont, version);
                 })
               }
             }
           );
-          
         }
       );
     }
@@ -142,7 +146,9 @@ function harPackageMove(answer){
 function CreatePr(typeCont, version){
   const reg = /feat:|fix:|docs:|style:|refactor:|perf:|test:|build:|chore:|ci:|release:/;
   if(!reg.test(typeCont)){
+    // commit提交不规范 自动退出
     console.log('请按照提示头进行commit提交')
+    process.exit(1)
   }
   console.log(`your input:${typeCont}`)
   execSync(
@@ -166,7 +172,7 @@ function CreatePr(typeCont, version){
   // });
   // 创建pr请求
   const mergeRequestId = createMergeRequest(
-    `sig`,
+    `${NEW_BRANCH}`,
     `docs: a auto pr script test`
     // `release: ${UNSCOPED_NPM_PACKAGE_NAME}@${version}`
   );
@@ -205,7 +211,7 @@ function isRepositoryClean() {
 async function createMergeRequest(sourceBranch, title) {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${MODULE_NAME}/pulls`,
+      `https://api.github.com/repos/${GITHUB_REPOS}/${MODULE_NAME}/pulls`,
       {
         method: 'POST',
         headers: {
@@ -214,9 +220,9 @@ async function createMergeRequest(sourceBranch, title) {
         },
         body: JSON.stringify({
           title: title,
-          head: `${GITHUB_OWNER}:${sourceBranch}`, // 确保这里的 GITHUB_OWNER 是实际的用户名
-          base: 'main', // 假设 'main' 是目标分支
-          body: 'pr 描述测试',
+          head: `${GITHUB_OWNER}:${sourceBranch}`, // 确保这里的 GITHUB_OWNER 是实际的用户名 or 仓库名
+          base: 'main', // 假设 'main' 是要合入的目标分支
+          body: '这是一条采用自动化脚本提交的信息',
         }),
       }
     );
