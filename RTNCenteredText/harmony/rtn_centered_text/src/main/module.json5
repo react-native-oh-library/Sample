@@ -1,0 +1,7 @@
+{
+  module: {
+    name: 'rtn_centered_text',
+    type: 'har',
+    deviceTypes: ['default'],
+  },
+}

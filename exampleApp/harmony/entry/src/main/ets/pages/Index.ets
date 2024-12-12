@@ -11,10 +11,18 @@ import {
   RNOHCoreContext
 } from '@rnoh/react-native-openharmony';
 import { createRNPackages } from '../RNPackagesFactory';
+import { RTNCenteredText } from "rtn-centered-text"
 
-const arkTsComponentNames: Array<string> = [];
+const arkTsComponentNames: Array<string> = [RTNCenteredText.NAME];
+
 @Builder
 export function buildCustomRNComponent(ctx: ComponentBuilderContext) {
+  if (ctx.componentName === RTNCenteredText.NAME) {
+    RTNCenteredText({
+      tag: ctx.tag,
+      ctx: ctx.rnComponentContext,
+    })
+  }
 }
 
 const wrappedCustomRNComponentBuilder = wrapBuilder(buildCustomRNComponent)
@@ -25,7 +33,6 @@ struct Index {
   @StorageLink('RNOHCoreContext') private rnohCoreContext: RNOHCoreContext | undefined = undefined
   @State shouldShow: boolean = false
   private logger!: RNOHLogger
-
 
   aboutToAppear() {
     this.logger = this.rnohCoreContext!.logger.clone("Index")

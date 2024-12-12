@@ -1,0 +1,12 @@
+{
+  license: 'MIT',
+  types: '',
+  name: 'rtn-centered-text',
+  description: '',
+  main: 'Index.ets',
+  type: 'module',
+  version: '1.0.0',
+  dependencies: {
+    "@rnoh/react-native-openharmony": '^0.72.38'
+  },
+}

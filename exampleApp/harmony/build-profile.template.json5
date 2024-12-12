@@ -31,5 +31,9 @@
         },
       ],
     },
+    {
+      name: 'rtn_centered_text',
+      srcPath: '../../RTNCenteredText/harmony/rtn_centered_text'
+    }
   ],
 }

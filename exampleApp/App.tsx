@@ -1,25 +1,44 @@
-import React from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import React, {useState} from 'react';
+import {StyleSheet, SafeAreaView, Button} from 'react-native';
+import RTNCenteredText from 'rtn-centered-text/src/RTNCenteredTextNativeComponent';
 
-const App = () => (
-  <View style={[styles.container, styles.horizontal]}>
-    <ActivityIndicator />
-    <ActivityIndicator size="large" />
-    <ActivityIndicator size="small" color="#0000ff" />
-    <ActivityIndicator size="large" color="#00ff00" />
-  </View>
-);
+const App = () => {
+  const [content, setContent] = useState('Hello World!');
+  return (
+    <SafeAreaView style={[styles.container, styles.horizontal]}>
+      <RTNCenteredText
+        text={content}
+        color="0xFFFF0000"
+        style={{width: '100%', height: 50}}
+        onTextTouch={e => {
+          if (e.type == '0') {
+            setContent('Touch Down');
+            return;
+          }
+          if (e.type == '1') {
+            setContent('Touch Up');
+            return;
+          }
+          if (e.type == '2') {
+            setContent('Touch Move');
+            return;
+          }
+        }}
+      />
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   horizontal: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    padding: 10
-  }
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
 });
 
 export default App;
