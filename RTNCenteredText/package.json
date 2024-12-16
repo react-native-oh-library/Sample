@@ -31,6 +31,6 @@
     "react-native": "*"
   },
   "scripts": {
-    "codegen-lib": "react-native codegen-lib-harmony --no-safety-check --npm-package-name rtn-centered-text --cpp-output-path ./harmony/rtn_centered_text/src/main/cpp/generated --ets-output-path ./harmony/rtn_centered_text/src/main/ets/generated --arkts-components-spec-paths ./src"
+    "codegen-lib": "react-native codegen-lib-harmony --no-safety-check --npm-package-name rtn-centered-text --cpp-output-path ./harmony/rtn_centered_text/src/main/cpp/generated --ets-output-path ./harmony/rtn_centered_text/src/main/ets/generated --arkts-components-spec-paths ./src --cpp-components-spec-paths ./src"
   }
 }
