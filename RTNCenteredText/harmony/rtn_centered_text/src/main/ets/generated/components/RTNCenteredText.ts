@@ -78,7 +78,6 @@ export namespace RTNCenteredText {
   }
   
   export interface CommandArgvByName {
-    "setFontSize": [number]
   }
   
   export class CommandReceiver {

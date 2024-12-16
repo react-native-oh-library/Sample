@@ -10,4 +10,5 @@ class RTNCenteredTextPackage : public BaseRtnCenteredTextPackage {
 public:
     RTNCenteredTextPackage(Package::Context ctx) : Super(ctx) {}
 };
+
 } // namespace rnoh
