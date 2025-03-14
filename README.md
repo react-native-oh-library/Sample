@@ -1,6 +1,14 @@
-# RNOH Example App
+# RNOH Example App  
 
-This is an example app for RNOH with custom third-party libraries.
+This is a sample application for RNOH, showcasing custom third-party libraries.  
+
+## rtn-centered-text
+`/RTNCenteredText`
+A Fabric-based example of a custom React Native library, providing both ArkTS and C-API native implementations.  
+
+## rtn-calculator
+`/RTNCalculator`
+A TurboModule-based example of a custom React Native library.
 
 ## Running tester app using the Metro Bundler
 
