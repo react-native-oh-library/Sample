@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, Button} from 'react-native';
+import {StyleSheet, SafeAreaView, Button, StatusBar, Text} from 'react-native';
 import RTNCenteredText from 'rtn-centered-text/src/RTNCenteredTextNativeComponent';
+import RTNCalculator from 'rtn-calculator/src/NativeCalculator';
 
 const App = () => {
   const [content, setContent] = useState('Hello World!');
+  const [result, setResult] = useState<number | null>(null);
   return (
-    <SafeAreaView style={[styles.container, styles.horizontal]}>
+    <SafeAreaView style={[styles.container, styles.vertical]}>
       <RTNCenteredText
         text={content}
         color="0xFFFF0000"
@@ -25,6 +27,15 @@ const App = () => {
           }
         }}
       />
+      <StatusBar barStyle={'dark-content'} />
+      <Text style={{marginLeft: 20, marginTop: 20}}>3+7={result ?? '??'}</Text>
+      <Button
+        title="Compute"
+        onPress={async () => {
+          const value = await RTNCalculator.add(3, 7);
+          setResult(value);
+        }}
+      />
     </SafeAreaView>
   );
 };
@@ -34,8 +45,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  horizontal: {
-    flexDirection: 'row',
+  vertical: {
+    flexDirection: 'column',
     justifyContent: 'space-around',
     padding: 10,
   },

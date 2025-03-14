@@ -1,0 +1,7 @@
+{
+  module: {
+    name: 'rtn_calculator',
+    type: 'har',
+    deviceTypes: ['default'],
+  },
+}

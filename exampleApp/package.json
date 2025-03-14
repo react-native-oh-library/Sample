@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "npm run codegen && hdc rport tcp:8081 tcp:8081 && react-native start",
-    "pack:pkg": "cd ../RTNCenteredText && npm pack && cd ../exampleApp",
-    "install:pkg": "npm uninstall rtn-centered-text && npm run pack:pkg && npm i rtn-centered-text@file:../RTNCenteredText/rtn-centered-text-0.0.1.tgz",
+    "pack:rtn-centered-text": "cd ../RTNCenteredText && npm pack && cd ../exampleApp",
+    "pack:rtn-calculator": "cd ../RTNCalculator && npm pack && cd ../exampleApp",
+    "reinstall:rtn-centered-text": "npm uninstall rtn-centered-text && npm run pack:rtn-centered-text && npm i rtn-centered-text@file:../RTNCenteredText/rtn-centered-text-0.0.1.tgz",
+    "reinstall:rtn-calculator": "npm uninstall rtn-calculator && npm run pack:rtn-calculator && npm i rtn-calculator@file:../RTNCalculator/rtn-calculator-0.0.1.tgz",
     "dev": "npm run codegen && react-native bundle-harmony --dev --minify=false",
-    "postinstall": "node ./scripts/create-build-profile && npm run install:pkg",
+    "postinstall": "node ./scripts/create-build-profile && npm run reinstall:rtn-centered-text && npm run reinstall:rtn-calculator",
     "codegen": "react-native codegen-harmony --rnoh-module-path ./harmony/oh_modules/@rnoh/react-native-openharmony",
     "android": "react-native run-android"
   },
@@ -18,6 +20,7 @@
     "react-native": "0.72.5",
     "react-native-flipper-performance-plugin": "^0.4.0",
     "react-native-harmony": "npm:@react-native-oh/react-native-harmony@^0.72.38",
+    "rtn-calculator": "file:../RTNCalculator/rtn-calculator-0.0.1.tgz",
     "rtn-centered-text": "file:../RTNCenteredText/rtn-centered-text-0.0.1.tgz"
   },
   "devDependencies": {

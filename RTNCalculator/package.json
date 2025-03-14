@@ -1,0 +1,34 @@
+{
+    "name": "rtn-calculator",
+    "version": "0.0.1",
+    "description": "Add numbers with TurboModules",
+    "react-native": "src/index",
+    "source": "src/index",
+    "files": [
+      "src",
+      "harmony",
+      "rtn-calculator.podspec",
+      "!**/__tests__",
+      "!**/__fixtures__",
+      "!**/__mocks__"
+    ],
+    "keywords": ["react-native", "harmony"],
+    "repository": "https://github.com/<your_github_handle>/rtn-calculator",
+    "author": "<Your Name> <your_email@your_provider.com> (https://github.com/<your_github_handle>)",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/<your_github_handle>/rtn-calculator/issues"
+    },
+    "homepage": "https://github.com/<your_github_handle>/rtn-calculator#readme",
+    "devDependencies": {
+        "react-native-harmony-cli": "npm:@react-native-oh/react-native-harmony-cli@^0.0.27",
+        "@react-native-community/cli": "11.4.1"
+    },
+    "peerDependencies": {
+      "react": "*",
+      "react-native": "*"
+    },
+    "scripts": {
+    "codegen-lib": "react-native codegen-lib-harmony --no-safety-check --npm-package-name rtn-calculator --cpp-output-path ./harmony/rtn_calculator/src/main/cpp/generated --ets-output-path ./harmony/rtn_calculator/src/main/ets/generated --turbo-modules-spec-paths ./src"
+  }
+  }

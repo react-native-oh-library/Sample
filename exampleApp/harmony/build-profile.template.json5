@@ -34,6 +34,10 @@
     {
       name: 'rtn_centered_text',
       srcPath: '../../RTNCenteredText/harmony/rtn_centered_text'
+    },
+    {
+      name: 'rtn_calculator',
+      srcPath: '../../RTNCalculator/harmony/rtn_calculator'
     }
   ],
 }

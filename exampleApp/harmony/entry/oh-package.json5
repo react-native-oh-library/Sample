@@ -5,6 +5,7 @@
   "description": "example description",
   "version": "1.0.0",
   "dependencies": {
-    "rtn-centered-text": "../../../RTNCenteredText/harmony/rtn_centered_text"
+    "rtn-centered-text": "../../../RTNCenteredText/harmony/rtn_centered_text",
+    "rtn-calculator": "../../../RTNCalculator/harmony/rtn_calculator",
   }
 }
